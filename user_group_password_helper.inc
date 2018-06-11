@@ -81,8 +81,8 @@ check_shadow () {
             if ($2 == "")
                     printf("Login %s has no password.\n", $1);
         if ($2 != "" && length($2) != 13 && length($2) != 34 &&
-            length($2) != 1 && $2 !~ /^\$[0-9a-f]+\$/)
-            printf("Login %s has an unsual password field length\n", $1);
+            length($2) != 1 && $2 !~ /^\$[0-9a-f]+\$/ && $2 !~ /^!!$/)
+            printf("Login %s has an unusual password field length\n", $1);
     }' < $PW > "$output_file"
     if [ -s "$output_file" ] ; then
             printf "\nChecking the $PW file:\n"
